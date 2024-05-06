@@ -36,6 +36,7 @@ trie = Trie()
 
 
 
+# getting all words from dictionary
 lines = open("./words.txt", "r").readlines()
 
 words = []
@@ -46,7 +47,7 @@ for it in lines:
 
 
 
-
+# array that help going through neighbours
 DX = [-1, -1, 0, 1, 1, 1, 0, -1]
 DY = [0, 1, 1, 1, 0, -1, -1, -1]
 
@@ -54,6 +55,22 @@ used = dict()
 foundWords = []
 res = dict()
 path = []
+
+
+
+
+"""
+
+x and y - coordinates of current tile in matrix in zero indexation
+mask - integer, mask with N * N bits, 1 tile is visited, 0 not visited.
+x * N + y -> index of tile
+
+word - current word that we got by concatenating letters on path
+
+v - vertex of trie, it represents all words in dictionary that share
+prefix with word 
+
+"""
 
 def dfs(x, y, mask, v, word):
     key = (x, y, mask, v)
